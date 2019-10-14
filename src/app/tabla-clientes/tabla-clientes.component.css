@@ -1,0 +1,9 @@
+.full-width-table {
+  width: 100%;
+}
+
+.tabla-clientes {
+  width: 80%;
+  margin: 20px auto;
+  overflow-x: auto;
+}

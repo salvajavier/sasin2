@@ -1,0 +1,6 @@
+tabla clientes:
+    Se agregan las columnas de contacto, editar, eliminar.
+
+nuevo cliente: el ingreso de la dirección cambia de dos campos a uno solo.
+
+nuevo contacto: se crea el componente

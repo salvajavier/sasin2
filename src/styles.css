@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+
+/*Elimina el padding de los expansion panels de la sidebar*/
+mat-sidenav-container .mat-expansion-panel-body {
+    padding-bottom: 0px !important
+}
+
+ mat-expansion-panel a {
+    box-sizing: content-box;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    color: black;
+    
+}
+
+mat-expansion-panel a:hover {
+    text-decoration: none;
+    color: black;
+}
+

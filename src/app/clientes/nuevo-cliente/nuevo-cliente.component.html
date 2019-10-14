@@ -1,0 +1,68 @@
+
+
+<div class="container">
+    <div class="row" >
+        <div class="col-sm-12">
+            <h3 mat-dialog-title>Nuevo Cliente</h3>
+            <mat-divider></mat-divider>
+
+            <form [formGroup]='nuevoClienteForm' action="" mat-dialog-content (ngSubmit)="save(documentEditForm.form.controls)" #documentEditForm="ngForm">
+              <div class="row">
+                  <div class="col-sm-4">
+                      <mat-form-field>
+                              <input matInput placeholder="Grupo" formControlName='grupo'>
+                      </mat-form-field>
+                  </div>
+              </div>
+
+              <div class="row">
+                    <div class="col-sm-4">
+                        <mat-form-field>
+                                <input matInput placeholder="Nombre" formControlName='nombre'>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                            <mat-form-field>
+                                    <input matInput placeholder="CUIT" formControlName='cuit'>
+                            </mat-form-field>
+                    </div>
+                    <div class="col-sm-4" formGroupName="direccion">
+                        <mat-form-field>
+                                <input matInput placeholder="Localidad" formControlName='localidad'>
+                        </mat-form-field>
+                </div>
+
+                </div>
+
+                <div class="row">
+
+                      <div class="col-sm-8" formGroupName="direccion">
+                          <mat-form-field class='full-width'>
+                                  <input matInput placeholder="Dirección"  formControlName='direccion'>
+                          </mat-form-field>
+                      </div>
+                      
+
+
+                    <div class="col-sm-4" formGroupName="direccion">
+                        <mat-form-field>
+                                <input matInput placeholder="Código Postal" formControlName='codigoPostal'>
+                        </mat-form-field>
+                </div>
+
+                </div>
+
+
+
+            </form>
+
+            <mat-dialog-actions>
+                    <button mat-raised-button color="primary" mat-dialog-close (click)="documentEditForm.ngSubmit.emit()"
+                    [disabled]="!documentEditForm.form.valid">Aceptar</button>
+                    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+                    <button mat-button [mat-dialog-close]="true">Cancelar</button>
+            </mat-dialog-actions>
+
+        </div>
+    </div>
+</div>

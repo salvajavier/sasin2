@@ -1,0 +1,14 @@
+mat-sidenav {
+    width: 12%;
+    
+}
+.mat-toolbar-row {
+ height: 12vh !important;
+}
+mat-sidenav-container {
+    height: 88vh !important;
+}
+
+mat-sidenav-container .mat-expansion-panel-body {
+    padding-bottom: 0px !important
+}
