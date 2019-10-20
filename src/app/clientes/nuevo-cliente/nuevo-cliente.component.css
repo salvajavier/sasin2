@@ -19,3 +19,6 @@ h6 {
 .full-width {
     width: 100% !important;
 }
+mat-form-field {
+    border: solid 1px black;
+}
