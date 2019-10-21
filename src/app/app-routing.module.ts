@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { ClientesComponent } from './clientes/clientes.component';
-import { DrogasComponent } from './drogas/drogas.component';
+import { DrogasComponent } from './drogas/drogas/drogas.component';
 import { TablaClientesComponent } from './tabla-clientes/tabla-clientes.component';
 import { from } from 'rxjs';
 const routes: Routes = [
@@ -17,7 +17,7 @@ const routes: Routes = [
     {
       path: 'drogas',
       component: DrogasComponent,
-      data: {breadcrumb: 'Clientes'}
+      data: {breadcrumb: 'Drogas'}
     }
   ]
   }

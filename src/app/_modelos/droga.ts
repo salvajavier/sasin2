@@ -26,15 +26,17 @@ export interface IntDroga {
                     masaDC: number,
                     fDLDC: number,
             };
-            sectores: [string];
-            rubros: [string];
+            sectores: string [];
+            rubros: string [];
             ubicacion: string;
             estado: string;
-            observaciones: string
+            observaciones: string;
+            certificados: string []
+
     };
     retesteos: {
             admiteRetesteo: boolean,
-            Retesteo: {
+            retesteo: {
                     admite: boolean,
                     numero: number,
                     fecha: {

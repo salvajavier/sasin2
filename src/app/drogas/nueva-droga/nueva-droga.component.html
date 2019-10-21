@@ -1,0 +1,134 @@
+<div class="container">
+    <div class="row" >
+        <div class="col-sm-12">
+            <h3 mat-dialog-title>Nuevo Cliente</h3>
+            <mat-divider></mat-divider>
+
+            <form [formGroup]='nuevaDrogaForm' action="" mat-dialog-content (ngSubmit)="save(documentEditForm.form.controls)" #documentEditForm="ngForm">
+
+                <mat-card>
+                        <mat-card-header>
+                                <mat-card-title>
+                                        Identificacion
+                                </mat-card-title>
+                        </mat-card-header>
+                       
+
+                        <div class="row">
+                                <div class="col-sm-4" formGroupName="identificacion">
+                                        <mat-form-field appearance="outline">
+                                                <mat-label>Nombre</mat-label>
+                                                <input matInput formControlName='nombre'>
+                                        </mat-form-field>
+                                </div>
+                                <div class="col-sm-4" formGroupName="identificacion">
+                                        <mat-form-field appearance="outline">
+                                                <mat-label>Codigo</mat-label>
+                                                <input matInput formControlName='codigo'>
+                                        </mat-form-field>
+                                </div>
+                                <div class="col-sm-4" formGroupName="identificacion">
+                                        <mat-form-field appearance="outline">
+                                                <mat-label>Marca</mat-label>
+                                                <input matInput formControlName='marca'>
+                                        </mat-form-field>
+                                </div>
+                        </div>
+
+                        <div class="row">
+                                <div class="col-sm-3" formGroupName="identificacion">
+                                        <mat-form-field appearance="outline">
+                                                <mat-label>Numero Producto</mat-label>
+                                                <input matInput formControlName='nProducto'>
+                                        </mat-form-field>
+                                </div>
+                                <div class="col-sm-3" formGroupName="identificacion">
+                                        <mat-form-field appearance="outline">
+                                                <mat-label>Lote</mat-label>
+                                                <input matInput formControlName='lote'>
+                                        </mat-form-field>
+                                </div>
+                                <div class="col-sm-3" formGroupName="identificacion">
+                                        <mat-form-field appearance="outline">
+                                                <mat-label>N CAS</mat-label>
+                                                <input matInput formControlName='CAS'>
+                                        </mat-form-field>
+                                </div>
+                                <div class="col-sm-3" formGroupName="identificacion">
+                                        <mat-form-field appearance="outline">
+                                                <mat-label>Codigo SENASA</mat-label>
+                                                <input matInput formControlName='codigoSenasa'>
+                                        </mat-form-field>
+                                </div>
+                        </div>
+
+                </mat-card>
+
+                <mat-card>
+                                <mat-card-header>
+                                        <mat-card-title>
+                                                Informacion
+                                        </mat-card-title>
+                                </mat-card-header>
+                               
+        
+                                <div class="row">
+                                        <div class="col-sm-4" formGroupName="informacion">
+                                                <mat-form-field appearance="outline">
+                                                        <mat-label>Pureza</mat-label>
+                                                        <input matInput formControlName='pureza'>
+                                                </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-4">
+                                                <mat-form-field appearance="outline" formGroupName="informacion">
+                                                        <mat-label>Humedad</mat-label>
+                                                        <input matInput formControlName='humedad'>
+                                                </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-4">
+                                                <mat-form-field appearance="outline" formGroupName="informacion">
+                                                        <mat-label>Cantidad Recibida</mat-label>
+                                                        <input matInput formControlName='cantidad.recibida.masa'>
+                                                </mat-form-field>
+                                        </div>
+                                </div>
+        
+                                <div class="row">
+                                        <div class="col-sm-4">
+                                                <mat-form-field appearance="outline" formGroupName="informacion">
+                                                        <mat-label>F.Recepcion</mat-label>
+                                                        <input matInput formControlName='fecha.recepcion'>
+                                                </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-4">
+                                                <mat-form-field appearance="outline" formGroupName="informacion">
+                                                        <mat-label>F.Vencimiento Certificado</mat-label>
+                                                        <input matInput formControlName='fecha.vencimientoCertificado'>
+                                                </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-4">
+                                                <mat-form-field appearance="outline" formGroupName="informacion">
+                                                        <mat-label>Libre/Combinada</mat-label>
+                                                        <input matInput formControlName='DLDC.libre'>
+                                                </mat-form-field>
+                                        </div>
+                                </div>
+        
+                        </mat-card>
+
+                
+   
+
+
+            </form>
+
+            <mat-dialog-actions>
+                    <button mat-raised-button color="primary" mat-dialog-close (click)="documentEditForm.ngSubmit.emit()"
+                    [disabled]="!documentEditForm.form.valid">Aceptar</button>
+                    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+                    <button mat-button [mat-dialog-close]="true">Cancelar</button>
+            </mat-dialog-actions>
+
+        </div>
+    </div>
+</div>

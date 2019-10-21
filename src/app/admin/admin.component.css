@@ -12,3 +12,12 @@ mat-sidenav-container {
 mat-sidenav-container .mat-expansion-panel-body {
     padding-bottom: 0px !important
 }
+
+.active-link {
+    font: bold;
+    background-color: darkgray;
+}
+
+a:hover{
+    background-color: thistle;
+}

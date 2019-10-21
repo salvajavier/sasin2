@@ -1,0 +1,27 @@
+form {
+    margin-top: 10px;
+}
+
+.inputGroup{
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+h6 {
+    margin-top: 10px;
+}
+
+.mat-dialog-content{
+    max-height: 80vh !important;
+}
+
+.full-width {
+    width: 100% !important;
+}
+mat-form-field {
+    
+    width: 100%;
+    
+}
+

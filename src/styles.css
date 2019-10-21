@@ -9,6 +9,10 @@ mat-sidenav-container .mat-expansion-panel-body {
     padding-bottom: 0px !important
 }
 
+.mat-expansion-panel-body {
+    padding: 0px !important;
+}
+
  mat-expansion-panel a {
     box-sizing: content-box;
     display: inline-block;
@@ -17,6 +21,7 @@ mat-sidenav-container .mat-expansion-panel-body {
     height: 40px;
     line-height: 40px;
     color: black;
+   
     
 }
 
@@ -24,4 +29,14 @@ mat-expansion-panel a:hover {
     text-decoration: none;
     color: black;
 }
+
+button {
+    outline: none !important;
+}
+
+mat-sidenav-content {
+    overflow-x: hidden !important;
+}
+
+
 

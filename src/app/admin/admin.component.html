@@ -1,4 +1,4 @@
-<mat-toolbar>SASIN <p><button mat-button (click)="sidenav.toggle()"><mat-icon>home</mat-icon></button></p></mat-toolbar>
+<mat-toolbar>SASIN <button mat-button (click)="sidenav.toggle()"><mat-icon>home</mat-icon></button></mat-toolbar>
 
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" [(opened)]="opened">
@@ -12,10 +12,9 @@
             </mat-panel-title>
             
           </mat-expansion-panel-header>
-        
-          <a routerLink="/clientes">Cliente</a>
-
-        
+         <a routerLink="/clientes" routerLinkActive="active-link">Cliente</a>
+         <a routerLink="/drogas"routerLinkActive="active-link">Drogas</a>
+          
         </mat-expansion-panel>
       </mat-accordion>
     </mat-sidenav>

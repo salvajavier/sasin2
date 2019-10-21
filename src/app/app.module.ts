@@ -17,6 +17,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { DrogasComponent } from './drogas/drogas/drogas.component';
+import { TablaDrogasComponent } from './drogas/tabla-drogas/tabla-drogas.component';
+import { NuevaDrogaComponent } from './drogas/nueva-droga/nueva-droga.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     NuevoContactoComponent,
     TablaClientesComponent,
     BreadcrumbsComponent,
+    DrogasComponent,
+    TablaDrogasComponent,
+    NuevaDrogaComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,8 +44,9 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    
   ],
-  entryComponents: [NuevoClienteComponent],
+  entryComponents: [NuevoClienteComponent, NuevaDrogaComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
