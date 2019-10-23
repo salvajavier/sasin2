@@ -15,19 +15,19 @@
                        
 
                         <div class="row">
-                                <div class="col-sm-4" formGroupName="identificacion">
+                                <div class="col-sm-4" >
                                         <mat-form-field appearance="outline">
                                                 <mat-label>Nombre</mat-label>
                                                 <input matInput formControlName='nombre'>
                                         </mat-form-field>
                                 </div>
-                                <div class="col-sm-4" formGroupName="identificacion">
+                                <div class="col-sm-4" >
                                         <mat-form-field appearance="outline">
                                                 <mat-label>Codigo</mat-label>
                                                 <input matInput formControlName='codigo'>
                                         </mat-form-field>
                                 </div>
-                                <div class="col-sm-4" formGroupName="identificacion">
+                                <div class="col-sm-4" >
                                         <mat-form-field appearance="outline">
                                                 <mat-label>Marca</mat-label>
                                                 <input matInput formControlName='marca'>
@@ -36,25 +36,25 @@
                         </div>
 
                         <div class="row">
-                                <div class="col-sm-3" formGroupName="identificacion">
+                                <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                                 <mat-label>Numero Producto</mat-label>
                                                 <input matInput formControlName='nProducto'>
                                         </mat-form-field>
                                 </div>
-                                <div class="col-sm-3" formGroupName="identificacion">
+                                <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                                 <mat-label>Lote</mat-label>
                                                 <input matInput formControlName='lote'>
                                         </mat-form-field>
                                 </div>
-                                <div class="col-sm-3" formGroupName="identificacion">
+                                <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                                 <mat-label>N CAS</mat-label>
                                                 <input matInput formControlName='CAS'>
                                         </mat-form-field>
                                 </div>
-                                <div class="col-sm-3" formGroupName="identificacion">
+                                <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                                 <mat-label>Codigo SENASA</mat-label>
                                                 <input matInput formControlName='codigoSenasa'>
@@ -73,43 +73,86 @@
                                
         
                                 <div class="row">
-                                        <div class="col-sm-4" formGroupName="informacion">
+                                        <div class="col-sm-4">
                                                 <mat-form-field appearance="outline">
                                                         <mat-label>Pureza</mat-label>
                                                         <input matInput formControlName='pureza'>
                                                 </mat-form-field>
                                         </div>
                                         <div class="col-sm-4">
-                                                <mat-form-field appearance="outline" formGroupName="informacion">
+                                                <mat-form-field appearance="outline">
                                                         <mat-label>Humedad</mat-label>
                                                         <input matInput formControlName='humedad'>
                                                 </mat-form-field>
                                         </div>
                                         <div class="col-sm-4">
-                                                <mat-form-field appearance="outline" formGroupName="informacion">
-                                                        <mat-label>Cantidad Recibida</mat-label>
-                                                        <input matInput formControlName='cantidad.recibida.masa'>
-                                                </mat-form-field>
+                                                <div class="row">
+
+                                                        <div class="col-sm-7">
+                                                                <mat-form-field appearance="outline">
+                                                                        <mat-label>Cantidad Recibida</mat-label>
+                                                                        <input matInput formControlName='masaCantidadRecibida'>
+                                                                </mat-form-field>    
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                                <mat-form-field appearance="outline">
+                                                                        <mat-label>Unidad</mat-label>
+                                                                        <mat-select formControlName="unidadCantidadRecibida">
+                                                                                <mat-option *ngFor="let unidad of unidades" [value]="unidad.value">
+                                                                                        {{unidad.viewValue}}
+                                                                                </mat-option>
+                                                                        </mat-select>
+                                                                </mat-form-field>  
+                                                        </div>
+                                                </div>
                                         </div>
                                 </div>
         
                                 <div class="row">
                                         <div class="col-sm-4">
-                                                <mat-form-field appearance="outline" formGroupName="informacion">
+                                                <mat-form-field appearance="outline">
                                                         <mat-label>F.Recepcion</mat-label>
-                                                        <input matInput formControlName='fecha.recepcion'>
+                                                        <input matInput [matDatepicker]="fRecepcion" formControlName='fRecepcion'>
+                                                        <mat-datepicker-toggle matSuffix [for]="fRecepcion"></mat-datepicker-toggle>
+                                                        <mat-datepicker #fRecepcion></mat-datepicker>
                                                 </mat-form-field>
                                         </div>
                                         <div class="col-sm-4">
-                                                <mat-form-field appearance="outline" formGroupName="informacion">
+                                                <mat-form-field appearance="outline">
                                                         <mat-label>F.Vencimiento Certificado</mat-label>
-                                                        <input matInput formControlName='fecha.vencimientoCertificado'>
+                                                        <input matInput [matDatepicker]="fVencimientoCertificado" formControlName='fVencimientoCertificado'>
+                                                        <mat-datepicker-toggle matSuffix [for]="fVencimientoCertificado"></mat-datepicker-toggle>
+                                                        <mat-datepicker #fVencimientoCertificado></mat-datepicker>
                                                 </mat-form-field>
                                         </div>
                                         <div class="col-sm-4">
-                                                <mat-form-field appearance="outline" formGroupName="informacion">
+                                                <mat-form-field appearance="outline">
                                                         <mat-label>Libre/Combinada</mat-label>
-                                                        <input matInput formControlName='DLDC.libre'>
+                                                        <mat-select formControlName="drogaLibre">
+                                                                <mat-option value="libre">Libre</mat-option>
+                                                                <mat-option value="combinada">Combinada</mat-option>
+                                                        </mat-select>
+                                                </mat-form-field>
+                                        </div>
+                                </div>
+
+                                <div class='row' *ngIf= "this.nuevaDrogaForm.controls.drogaLibre.value == 'combinada'">
+                                        <div class="col-sm-4" >
+                                                <mat-form-field appearance="outline">
+                                                        <mat-label>Masa DL</mat-label>
+                                                        <input matInput formControlName='masaDL'>
+                                                </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-4" >
+                                                <mat-form-field appearance="outline">
+                                                        <mat-label>Masa DC</mat-label>
+                                                        <input matInput formControlName='masaDC'>
+                                                </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-4" >
+                                                <mat-form-field appearance="outline">
+                                                        <mat-label>Factor</mat-label>
+                                                        <input matInput formControlName='fDLDC'>
                                                 </mat-form-field>
                                         </div>
                                 </div>

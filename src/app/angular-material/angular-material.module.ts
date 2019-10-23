@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule, MatSidenavModule, MatIconModule, MatButtonModule, MatDialogModule, MatDividerModule,
-  MatInputModule, MatFormFieldModule, MatCheckboxModule, MatExpansionModule, MatCardModule} from '@angular/material';
-
+  MatInputModule, MatFormFieldModule, MatCheckboxModule, MatExpansionModule, MatCardModule, MatSelectModule, 
+  MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 
 @NgModule({
   declarations: [],
@@ -15,13 +15,16 @@ import {MatToolbarModule, MatSidenavModule, MatIconModule, MatButtonModule, MatD
     MatSidenavModule,
     MatIconModule,
     MatButtonModule,
-    MatDialogModule, 
+    MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
     MatExpansionModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ],
   exports: [
@@ -37,7 +40,10 @@ import {MatToolbarModule, MatSidenavModule, MatIconModule, MatButtonModule, MatD
     MatInputModule,
     MatCheckboxModule,
     MatExpansionModule,
-    MatCardModule 
+    MatCardModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class AngularMaterialModule { }
