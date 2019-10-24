@@ -47,7 +47,7 @@ export interface IntDroga {
     };
 }
 
-export class Cliente  {
+export class Droga  {
   _id: string;
   identificacion: {
     nombre: string,
@@ -82,8 +82,10 @@ informacion: {
     observaciones: string,
     certificados: string []
 };
-retesteos: {
-    admiteRetesteo: boolean,
+
+//Da error por undefined. Lo saque por el momento para no demorar. Despues lo arreglo
+/*retesteos?: {
+    admiteRetesteo?: boolean,
     retesteo: {
             admite: boolean,
             numero: number,
@@ -92,37 +94,47 @@ retesteos: {
                     vencimiento: Date,
             }
     }
-};
+}*/;
 
-  constructor(droga) {
+  constructor(droga: any) {
     this._id = null;
-    this.identificacion.nombre = droga.identificacion.nombre.value;
-    this.identificacion.codigo = droga.identificacion.codigo.value;
-    this.identificacion.marca = droga.identificacion.marca.value;
-    this.identificacion.nProducto = droga.identificacion.nProducto.value;
-    this.identificacion.lote = droga.identificacion.lote.value;
-    this.identificacion.CAS = droga.identificacion.CAS.value;
-    this.identificacion.codigoSenasa = droga.identificacion.codigoSenasa.value;
-    this.informacion.pureza = droga.informacion.pureza.value;
-    this.informacion.humedad = droga.informacion.humedad.value;
-    this.informacion.fecha.recepcion = droga.informacion.fecha.recepcion.value;
-    this.informacion.fecha.vencimientoCertificado = droga.informacion.fecha.vencimientoCertificado.value;
-    this.informacion.cantidad.recibida = droga.informacion.cantidad.recibida.value;
-    this.informacion.cantidad.remanente = droga.informacion.cantidad.remanente.value;
-    this.informacion.DLDC.libre = droga.informacion.DLDC.libre.value;
-    this.informacion.DLDC.masaDL = droga.informacion.DLDC.masaDL.value;
-    this.informacion.DLDC.masaDC = droga.informacion.DLDC.masaDC.value;
-    this.informacion.DLDC.fDLDC = droga.informacion.DLDC.fDLDC.value;
-    this.informacion.DLDC.masaDL = droga.informacion.DLDC.masaDL.value;
-    this.informacion.sectores = droga.informacion.sectores.value;
-    this.informacion.rubros = droga.informacion.rubros.value;
-    this.informacion.ubicacion = droga.informacion.ubicacion.value;
-    this.informacion.estado = droga.informacion.estado.value;
-    this.informacion.observaciones = droga.informacion.observaciones.value;
-    this.informacion.certificados = droga.informacion.certificados.value;
-    this.retesteos.admiteRetesteo = droga.retesteos.admiteRetesteo.value;
+    this.identificacion = { nombre: null, codigo: null, marca: null, nProducto: null, lote: null, CAS: null, codigoSenasa: null}
+    this.informacion = { pureza: null, humedad: null, fecha: {recepcion: null, vencimientoCertificado: null},
+                       cantidad: {recibida: {masa: null, unidad: null}, remanente: {masa: null, unidad: null}},
+                       DLDC: { libre: null, masaDL: null, masaDC: null, fDLDC: null }, sectores: null, rubros: null,
+                       ubicacion: null, estado: null, observaciones: null, certificados: null};
+  //  this.retesteos = {admiteRetesteo: null, retesteo: {admite: null, numero: null, fecha: {realizacion: null, vencimiento: null}}}
+
+
+    this.identificacion.nombre = droga.nombre.value;
+    this.identificacion.codigo = droga.codigo.value;
+    this.identificacion.marca = droga.marca.value;
+    this.identificacion.nProducto = droga.nProducto.value;
+    this.identificacion.lote = droga.lote.value;
+    this.identificacion.CAS = droga.CAS.value;
+    this.identificacion.codigoSenasa = droga.codigoSenasa.value;
+    this.informacion.pureza = droga.pureza.value;
+    this.informacion.humedad = droga.humedad.value;
+    this.informacion.fecha.recepcion = droga.fRecepcion.value;
+    this.informacion.fecha.vencimientoCertificado = droga.fVencimientoCertificado.value;
+    this.informacion.cantidad.recibida.masa = droga.masaCantidadRecibida.value;
+    this.informacion.cantidad.recibida.unidad = droga.unidadCantidadRemanente.value;
+    this.informacion.cantidad.remanente.masa = droga.masaCantidadRemanente.value;
+    this.informacion.cantidad.remanente.unidad = droga.unidadCantidadRemanente.value;
+    this.informacion.DLDC.libre = droga.drogaLibre.value;
+    this.informacion.DLDC.masaDL = droga.masaDL.value;
+    this.informacion.DLDC.masaDC = droga.masaDC.value;
+    this.informacion.DLDC.fDLDC = droga.fDLDC.value;
+    this.informacion.sectores = droga.sectores.value;
+    this.informacion.rubros = droga.rubros.value;
+    this.informacion.ubicacion = droga.ubicacion.value;
+    this.informacion.estado = droga.estado.value;
+    this.informacion.observaciones = droga.observaciones.value;
+    this.informacion.certificados = droga.certificados.value;
+ /*   this.retesteos.admiteRetesteo = droga.retesteos.admiteRetesteo.value ? droga.retesteos.admiteRetesteo.value : null;
     this.retesteos.retesteo.admite = droga.retesteos.retesteo.admite.value;
+    this.retesteos.retesteo.numero = droga.retesteos.retesteo.numero.value;
     this.retesteos.retesteo.fecha.realizacion = droga.retesteos.retesteo.fecha.realizacion.value;
-    this.retesteos.retesteo.fecha.vencimiento = droga.retesteos.retesteo.fecha.vencimiento.value;
+    this.retesteos.retesteo.fecha.vencimiento = droga.retesteos.retesteo.fecha.vencimiento.value;*/
   }
 }

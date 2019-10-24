@@ -17,8 +17,8 @@ export class DrogasComponent implements OnInit {
   openDialogNuevaDroga(): void {
     const dialogRef = this.dialog.open(NuevaDrogaComponent, {
       width: '1200px',
-      height: '900px',
-      disableClose: false
+      height: '950px',
+      disableClose: true
     });
 
 }
