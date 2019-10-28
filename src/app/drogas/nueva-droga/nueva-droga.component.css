@@ -31,3 +31,7 @@ mat-card{
 mat-card {
     margin-bottom: 10px;
 }
+
+mat-checkbox {
+    margin-top: 15px !important;
+}

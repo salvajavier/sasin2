@@ -1,7 +1,9 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, OnChanges, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import {  Droga } from 'src/app/_modelos/droga';
 import { ClientesService } from 'src/app/_servicios/clientes.service';
+import { DrogasService } from 'src/app/_servicios/drogas.service';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-nueva-droga',
@@ -10,7 +12,10 @@ import { ClientesService } from 'src/app/_servicios/clientes.service';
 })
 export class NuevaDrogaComponent implements OnInit {
 
+
+
   nuevaDrogaForm: FormGroup;
+  controlesFormulario;
 
   unidades = [
     {value: '0', viewValue: 'g'},
@@ -53,42 +58,73 @@ export class NuevaDrogaComponent implements OnInit {
     {value: '3', viewValue: 'Vencido - Agotado'},
   ];
 
-
-
 fDLDC;
-  constructor(private fb: FormBuilder, private cs: ClientesService) { }
+  constructor(private fb: FormBuilder, private ds: DrogasService, @Inject(MAT_DIALOG_DATA) public data: Droga) { }
 
   ngOnInit() {
+    if (this.ds.formularioNuevaDroga === true) {
     this.nuevaDrogaForm = this.fb.group({
-       nombre: [''],
-       codigo: [''],
+       nombre: ['', [Validators.required]],
+       codigo: ['', [Validators.required, Validators.pattern('[a-zA-Z]+-[0-9]+')]],
        marca: [''],
        nProducto: [''],
        lote: [''],
        CAS: [''],
        codigoSenasa: [''],
-
-      pureza: [''],
-      humedad: [''],
-        fRecepcion: [''],
-        fVencimientoCertificado: [''],
-        masaCantidadRecibida: [''],
+       estandarInterno: [false, [Validators.required]],
+       pureza: [null],
+       humedad: [null],
+       fRecepcion: [null],
+        fVencimientoCertificado: [null],
+        masaCantidadRecibida: [null],
         unidadCantidadRecibida: [''],
-        masaCantidadRemanente: [''],
+        masaCantidadRemanente: [null],
         unidadCantidadRemanente: [''],
-        drogaLibre: [''],
-        masaDL: [''],
-        masaDC: [''],
-        fDLDC: [{value: '', disabled: true}],
+        drogaLibre: [true, [Validators.required]],
+        masaDL: [null],
+        masaDC: [null],
+        fDLDC: [{value: null, disabled: true}],
         sectores: [''],
         rubros: [''],
         ubicacion: [''],
-        estado: [''],
+        estado: ['', [Validators.required]],
         observaciones: [''],
         certificados: [''],
-      });
+      }); } else {
+        this.nuevaDrogaForm = this.fb.group({
+          nombre: [this.data.identificacion.nombre, [Validators.required]],
+          codigo: [this.data.identificacion.codigo, [Validators.required, Validators.pattern('[a-zA-Z]+-[0-9]+')]],
+          marca: [this.data.identificacion.marca],
+          nProducto: [this.data.identificacion.nProducto],
+          lote: [this.data.identificacion.lote],
+          CAS: [this.data.identificacion.CAS],
+          codigoSenasa: [this.data.identificacion.codigoSenasa],
+          estandarInterno: [this.data.identificacion.estandarInterno, [Validators.required]],
+          pureza: [this.data.informacion.pureza],
+          humedad: [this.data.informacion.humedad],
+          fRecepcion: [this.data.informacion.fecha.recepcion],
+           fVencimientoCertificado: [this.data.informacion.fecha.vencimientoCertificado],
+           masaCantidadRecibida: [this.data.informacion.cantidad.recibida.masa],
+           unidadCantidadRecibida: [this.data.informacion.cantidad.recibida.unidad],
+           masaCantidadRemanente: [this.data.informacion.cantidad.remanente.masa],
+           unidadCantidadRemanente: [this.data.informacion.cantidad.remanente.unidad],
+           drogaLibre: [this.data.informacion.DLDC.libre, [Validators.required]],
+           masaDL: [this.data.informacion.DLDC.masaDL],
+           masaDC: [this.data.informacion.DLDC.masaDC],
+           fDLDC: [{value: this.data.informacion.DLDC.fDLDC, disabled: true}],
+           sectores: [this.data.informacion.sectores],
+           rubros: [this.data.informacion.rubros],
+           ubicacion: [this.data.informacion.ubicacion],
+           estado: [this.data.informacion.estado, [Validators.required]],
+           observaciones: [this.data.informacion.observaciones],
+           certificados: [this.data.informacion.certificados],
+         });
+
+      }
     this.fDLDC = this.nuevaDrogaForm.get('fDLDC');
     this.onChanges();
+    this.controlesFormulario = this.nuevaDrogaForm.controls;
+
 }
 
 onChanges(): void {
@@ -110,14 +146,20 @@ onChanges(): void {
 }
 
 save(formData) {
-  console.log(formData)
-  const cliente = new Droga (formData);
-  //this.cs.postClientes(cliente);
-  console.log(cliente);
+  const droga = new Droga (formData);
+  if (this.ds.formularioNuevaDroga === true) {
+    this.ds.guardarDroga(droga);
+  } else {
+    this.ds.actualizarDroga(droga);
+  }
 }
 
 calculoFactor() {
-  return this.nuevaDrogaForm.controls.masaDL.value / this.nuevaDrogaForm.controls.masaDC.value 
+  return this.nuevaDrogaForm.controls.masaDL.value / this.nuevaDrogaForm.controls.masaDC.value;
 }
 
+getErrorMessage() {
+  return this.controlesFormulario.nombre.hasError('required') || this.controlesFormulario.codigo.hasError('required') ?
+  'Este es un campo requerido' : this.controlesFormulario.codigo.hasError('pattern') ? 'El codigo ingresado no es valido' : '';
+}
 }

@@ -1,0 +1,25 @@
+<div class='container'>
+     <div class='row vh100 justify-content-center align-items-center'>
+        <div class='col-sm-6'>
+                <mat-card>
+                    <mat-spinner *ngIf='isLoading'></mat-spinner>
+                    <form (submit)='ingresar(formularioIngreso)' #formularioIngreso= 'ngForm' *ngIf='!isLoading'>
+                    <mat-form-field appearance='outline'>
+                            <mat-label>Usuario</mat-label>
+            
+                        <input matInput type='text' name= 'usuario' ngModel #usuarioInput='ngModel' placeholder="Usuario" >
+                        <mat-error *ngIf=''>Ingrese un usuario valido</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance='outline'>
+                            <mat-label>Password</mat-label>
+            
+                        <input type="password" name='password' ngModel #passwordInput='ngModel' matInput placeholder="Password">
+                        <mat-error *ngIf=''>Password invalido</mat-error>
+                    </mat-form-field>
+                    <button mat-raised-button color='primary' type='submit'>Ingresar</button>
+                    </form>
+                </mat-card>
+        </div>
+     </div>
+    
+</div>

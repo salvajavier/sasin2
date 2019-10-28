@@ -9,7 +9,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 
 import { AgGridModule } from 'ag-grid-angular';
 import { NuevoClienteComponent } from './clientes/nuevo-cliente/nuevo-cliente.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NuevoContactoComponent } from './clientes/nuevo-contacto/nuevo-contacto.component';
 import { TablaClientesComponent } from './tabla-clientes/tabla-clientes.component';
@@ -20,6 +20,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { DrogasComponent } from './drogas/drogas/drogas.component';
 import { TablaDrogasComponent } from './drogas/tabla-drogas/tabla-drogas.component';
 import { NuevaDrogaComponent } from './drogas/nueva-droga/nueva-droga.component';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NuevaDrogaComponent } from './drogas/nueva-droga/nueva-droga.component'
     DrogasComponent,
     TablaDrogasComponent,
     NuevaDrogaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,7 @@ import { NuevaDrogaComponent } from './drogas/nueva-droga/nueva-droga.component'
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    
+    FormsModule
   ],
   entryComponents: [NuevoClienteComponent, NuevaDrogaComponent],
   providers: [],

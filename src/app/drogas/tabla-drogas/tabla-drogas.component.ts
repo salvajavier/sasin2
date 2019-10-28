@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DrogasService } from 'src/app/_servicios/drogas.service';
+import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tabla-drogas',
@@ -6,60 +9,185 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tabla-drogas.component.css']
 })
 export class TablaDrogasComponent implements OnInit {
-
-  constructor() { }
+  
+  private gridApi;
+  private gridColumnApi;
+  private columnDefs = [];
+  private rowData: any;
+  private rowSelection;
+  private selectedId;
+  refrescarTabla: Subscription;
+  
+  constructor(private ds: DrogasService) { }
 
   ngOnInit() {
-  }
 
-  columnDefs = [
+    moment.locale('es');
+    this.columnDefs = [
 
+      {
+        headerName: 'Identificacion',
+        children: [
+            {headerName: 'Nombre', field: 'identificacion.nombre', resizable: true,
+            filter: 'agTextColumnFilter',
+            filterParams: {
+            applyButton: true,
+            clearButton: true
+          }},
+            {headerName: 'Codigo', field: 'identificacion.codigo', resizable: true,
+            filter: 'agTextColumnFilter',
+            filterParams: {
+            applyButton: true,
+            clearButton: true
+          }},
+            {headerName: 'Marca', field: 'identificacion.marca', resizable: true,
+            filter: 'agTextColumnFilter',
+            filterParams: {
+            applyButton: true,
+            clearButton: true
+          }},
+            {headerName: 'N.Producto', field: 'identificacion.nProducto', resizable: true,
+            filter: 'agTextColumnFilter',
+            filterParams: {
+            applyButton: true,
+            clearButton: true
+          }},
+            {headerName: 'Lote', field: 'identificacion.lote', resizable: true,
+            filter: 'agTextColumnFilter',
+            filterParams: {
+            applyButton: true,
+            clearButton: true
+          }},
+            {headerName: 'CAS', field: 'identificacion.CAS', resizable: true,
+            filter: 'agTextColumnFilter',
+            filterParams: {
+            applyButton: true,
+            clearButton: true
+          }},
+            {headerName: 'Cod. SENASA', field: 'identificacion.codigoSenasa', resizable: true,
+            filter: 'agTextColumnFilter',
+            filterParams: {
+            applyButton: true,
+            clearButton: true
+          }},
+        ]
+    },
     {
-      headerName: "Identificacion",
+      headerName: 'Informacion',
       children: [
-          {headerName: "Nombre", field: "identificacion.nombre"},
-          {headerName: "Codigo", field: "identificacion.codigo"},
-          {headerName: "Marca", field: "identificacion.marca"},
-          {headerName: "N.Producto", field: "identificacion.nProducto"},
-          {headerName: "Lote", field: "identificacion.lote"},
-          {headerName: "CAS", field: "identificacion.CAS"},
-          {headerName: "Cod. SENASA", field: "identificacion.codigoSenasa"},
+          {headerName: 'Pureza', field: 'informacion.pureza', resizable: true,
+            filter: 'agNumberColumnFilter',
+            filterParams: {
+            applyButton: true,
+            clearButton: true
+          }},
+          {headerName: 'Humedad', field: 'informacion.humedad', resizable: true,
+          filter: 'agNumberColumnFilter',
+          filterParams: {
+          applyButton: true,
+          clearButton: true
+        }},
+          {headerName: 'F.Recepcion', field: 'informacion.fecha.recepcion', resizable: true,
+          filter: 'agDateColumnFilter',
+          filterParams: {
+          applyButton: true,
+          clearButton: true
+        }, valueFormatter(params) { return params.value && params.value != null ? moment(params.value).format('L') : null; }  },
+          {headerName: 'F.Vencimiento', field: 'informacion.fecha.vencimientoCertificado', resizable: true,
+          filter: 'agDateColumnFilter',
+          filterParams: {
+          applyButton: true,
+          clearButton: true
+        }, valueFormatter(params) { return params.value && params.value != null ? moment(params.value).format('L') : null; }},
+          {headerName: 'Cant.Recibida', field: 'informacion.cantidad.recibida.masa', resizable: true,
+          filter: 'agNumberColumnFilter',
+          filterParams: {
+          applyButton: true,
+          clearButton: true
+        }},
+          {headerName: 'CR Unidad', field: 'informacion.cantidad.recibida.unidad', resizable: true,
+          filter: 'agTextColumnFilter',
+          filterParams: {
+          applyButton: true,
+          clearButton: true
+        }},
+          {headerName: 'Libre / Combinada', field: 'informacion.DLDC.libre', resizable: true,
+          filter: 'agTextColumnFilter',
+          filterParams: {
+          applyButton: true,
+          clearButton: true
+        }},
+          {headerName: 'Masa DL', field: 'informacion.DLDC.masaDL', resizable: true,
+          filter: 'agNumberColumnFilter',
+          filterParams: {
+          applyButton: true,
+          clearButton: true
+        }},
+          {headerName: 'Masa DC', field: 'informacion.DLDC.masaDC', resizable: true,
+          filter: 'agNumberColumnFilter',
+          filterParams: {
+          applyButton: true,
+          clearButton: true
+        }},
+          {headerName: 'Factor DLDC', field: 'informacion.DLDC.fDLDC', resizable: true,
+          filter: 'agNumberColumnFilter',
+          filterParams: {
+          applyButton: true,
+          clearButton: true
+        }},
       ]
   },
 
+
   {
-    headerName: "Informacion",
+    headerName: 'Datos Generales',
     children: [
-        {headerName: "Pureza", field: "informacion.pureza"},
-        {headerName: "Humedad", field: "informacion.humedad"},
-        {headerName: "F.Recepcion", field: "informacion.fecha.recepcion"},
-        {headerName: "F.Vencimiento", field: "informacion.fecha.vencimientoCertificado"},
-        {headerName: "Cant.Recibida", field: "informacion.cantidad.recibida"},
-        {headerName: "Libre / Combinada", field: "informacion.DLDC.libre"},
-        {headerName: "Masa DL", field: "informacion.DLDC.masaDL"},
-        {headerName: "Masa DC", field: "informacion.DLDC.masaDC"},
-        {headerName: "Factor DLDC", field: "informacion.DLDC.fDLDC"},
+        {headerName: 'Sectores', field: 'informacion.sectores', resizable: true,
+        filter: 'agTextColumnFilter',
+        filterParams: {
+        applyButton: true,
+        clearButton: true
+      }},
+        {headerName: 'Rubros', field: 'informacion.rubros', resizable: true,
+        filter: 'agTextColumnFilter',
+        filterParams: {
+        applyButton: true,
+        clearButton: true
+      }},
+        {headerName: 'Ubicacion', field: 'informacion.ubicacion', resizable: true,
+        filter: 'agTextColumnFilter',
+        filterParams: {
+        applyButton: true,
+        clearButton: true
+      }},
+        {headerName: 'Estado', field: 'informacion.estado', resizable: true,
+        filter: 'agTextColumnFilter',
+        filterParams: {
+        applyButton: true,
+        clearButton: true
+      }},
+        {headerName: 'Observaciones', field: 'informacion.observaciones', resizable: true,
+        filter: 'agTextColumnFilter',
+        filterParams: {
+        applyButton: true,
+        clearButton: true
+      }},
     ]
-},
+  },
 
+  ];
+    this.rowSelection = 'single';
+    this.rowData = this.ds.getDrogas();
+  }
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
 
-{
-  headerName: "Datos Generales",
-  children: [
-      {headerName: "Sectores", field: "sectores"},
-      {headerName: "Rubros", field: "rubros"},
-      {headerName: "Ubicacion", field: "ubicacion"},
-      {headerName: "Estado", field: "estado"},
-      {headerName: "Observaciones", field: "observaciones"},
-  ]
-},
+  onSelectionChanged() {
+    const selectedRows = this.gridApi.getSelectedRows();
+    this.ds.idSeleccionado = selectedRows[0]._id;
+  }
 
-];
-
-rowData = [
-    { make: 'Toyota', model: 'Celica', price: 35000 },
-    { make: 'Ford', model: 'Mondeo', price: 32000 },
-    { make: 'Porsche', model: 'Boxter', price: 72000 }
-];
 
 }

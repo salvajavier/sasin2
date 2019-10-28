@@ -8,7 +8,8 @@ const drogaSchema = mongoose.Schema({
                 nProducto: String,
                 lote: String,
                 CAS: String,
-                codigoSenasa: String
+                codigoSenasa: String,
+                estandarInterno: Boolean
         },
         informacion: {
                 pureza: Number,

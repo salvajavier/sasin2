@@ -7,7 +7,9 @@ export interface IntDroga {
             nProducto: string,
             lote: string,
             CAS: string,
-            codigoSenasa: string
+            codigoSenasa: string,
+            estandarInterno: boolean
+
     };
     informacion: {
             pureza: number,
@@ -56,7 +58,8 @@ export class Droga  {
     nProducto: string,
     lote: string,
     CAS: string,
-    codigoSenasa: string
+    codigoSenasa: string,
+    estandarInterno: boolean
 };
 informacion: {
     pureza: number,
@@ -83,7 +86,7 @@ informacion: {
     certificados: string []
 };
 
-//Da error por undefined. Lo saque por el momento para no demorar. Despues lo arreglo
+// Da error por undefined. Lo saque por el momento para no demorar. Despues lo arreglo
 /*retesteos?: {
     admiteRetesteo?: boolean,
     retesteo: {
@@ -94,17 +97,17 @@ informacion: {
                     vencimiento: Date,
             }
     }
-}*/;
+}*/
 
   constructor(droga: any) {
     this._id = null;
-    this.identificacion = { nombre: null, codigo: null, marca: null, nProducto: null, lote: null, CAS: null, codigoSenasa: null}
+    this.identificacion = { nombre: null, codigo: null, marca: null, nProducto: null, lote: null, CAS: null, codigoSenasa: null,
+         estandarInterno: null};
     this.informacion = { pureza: null, humedad: null, fecha: {recepcion: null, vencimientoCertificado: null},
                        cantidad: {recibida: {masa: null, unidad: null}, remanente: {masa: null, unidad: null}},
                        DLDC: { libre: null, masaDL: null, masaDC: null, fDLDC: null }, sectores: null, rubros: null,
                        ubicacion: null, estado: null, observaciones: null, certificados: null};
   //  this.retesteos = {admiteRetesteo: null, retesteo: {admite: null, numero: null, fecha: {realizacion: null, vencimiento: null}}}
-
 
     this.identificacion.nombre = droga.nombre.value;
     this.identificacion.codigo = droga.codigo.value;
@@ -113,12 +116,13 @@ informacion: {
     this.identificacion.lote = droga.lote.value;
     this.identificacion.CAS = droga.CAS.value;
     this.identificacion.codigoSenasa = droga.codigoSenasa.value;
+    this.identificacion.estandarInterno = droga.estandarInterno.value;
     this.informacion.pureza = droga.pureza.value;
     this.informacion.humedad = droga.humedad.value;
     this.informacion.fecha.recepcion = droga.fRecepcion.value;
     this.informacion.fecha.vencimientoCertificado = droga.fVencimientoCertificado.value;
     this.informacion.cantidad.recibida.masa = droga.masaCantidadRecibida.value;
-    this.informacion.cantidad.recibida.unidad = droga.unidadCantidadRemanente.value;
+    this.informacion.cantidad.recibida.unidad = droga.unidadCantidadRecibida.value;
     this.informacion.cantidad.remanente.masa = droga.masaCantidadRemanente.value;
     this.informacion.cantidad.remanente.unidad = droga.unidadCantidadRemanente.value;
     this.informacion.DLDC.libre = droga.drogaLibre.value;

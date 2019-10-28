@@ -1,7 +1,10 @@
 <ag-grid-angular 
     style="width: 100%; height: 600px;" 
     class="ag-theme-balham"
-    [rowData]="rowData" 
+    [rowData]="ds.dataDroga" 
+    [rowSelection]='rowSelection'
     [columnDefs]="columnDefs"
+    (selectionChanged)="onSelectionChanged($event)"
+    (gridReady)="onGridReady($event)"
     >
 </ag-grid-angular>

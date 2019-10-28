@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule, MatSidenavModule, MatIconModule, MatButtonModule, MatDialogModule, MatDividerModule,
   MatInputModule, MatFormFieldModule, MatCheckboxModule, MatExpansionModule, MatCardModule, MatSelectModule, 
-  MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+  MatDatepickerModule, MatNativeDateModule, MatSnackBarModule, MatProgressSpinnerModule} from '@angular/material';
 
 @NgModule({
   declarations: [],
@@ -24,7 +24,9 @@ import {MatToolbarModule, MatSidenavModule, MatIconModule, MatButtonModule, MatD
     MatCardModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
 
   ],
   exports: [
@@ -43,7 +45,9 @@ import {MatToolbarModule, MatSidenavModule, MatIconModule, MatButtonModule, MatD
     MatCardModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AngularMaterialModule { }

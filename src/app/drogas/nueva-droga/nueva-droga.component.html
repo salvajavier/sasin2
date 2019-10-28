@@ -18,19 +18,24 @@
                                 <div class="col-sm-4" >
                                         <mat-form-field appearance="outline">
                                                 <mat-label>Nombre</mat-label>
-                                                <input matInput formControlName='nombre'>
+                                                <input matInput formControlName='nombre' autocomplete="off">
+                                                <mat-error *ngIf="this.nuevaDrogaForm.controls.nombre.invalid">{{this.getErrorMessage()}}</mat-error>
+
                                         </mat-form-field>
                                 </div>
                                 <div class="col-sm-4" >
                                         <mat-form-field appearance="outline">
                                                 <mat-label>Codigo</mat-label>
-                                                <input matInput formControlName='codigo'>
+                                                <input matInput formControlName='codigo' autocomplete="off">
+                                                <mat-hint>Ejemplo: CLB-001</mat-hint>
+                                                <mat-error *ngIf="this.nuevaDrogaForm.controls.codigo.invalid">{{this.getErrorMessage()}}</mat-error>
+
                                         </mat-form-field>
                                 </div>
                                 <div class="col-sm-4" >
                                         <mat-form-field appearance="outline">
                                                 <mat-label>Marca</mat-label>
-                                                <input matInput formControlName='marca'>
+                                                <input matInput formControlName='marca' autocomplete="off">
                                         </mat-form-field>
                                 </div>
                         </div>
@@ -39,27 +44,30 @@
                                 <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                                 <mat-label>Numero Producto</mat-label>
-                                                <input matInput formControlName='nProducto'>
+                                                <input matInput formControlName='nProducto' autocomplete="off">
                                         </mat-form-field>
                                 </div>
                                 <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                                 <mat-label>Lote</mat-label>
-                                                <input matInput formControlName='lote'>
+                                                <input matInput formControlName='lote' autocomplete="off">
                                         </mat-form-field>
                                 </div>
                                 <div class="col-sm-3">
                                         <mat-form-field appearance="outline">
                                                 <mat-label>N CAS</mat-label>
-                                                <input matInput formControlName='CAS'>
+                                                <input matInput formControlName='CAS' autocomplete="off">
                                         </mat-form-field>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                         <mat-form-field appearance="outline">
                                                 <mat-label>Codigo SENASA</mat-label>
-                                                <input matInput formControlName='codigoSenasa'>
+                                                <input matInput formControlName='codigoSenasa' autocomplete="off">
                                         </mat-form-field>
                                 </div>
+                                 <div class="col-sm-1">
+                                        <mat-checkbox formControlName="estandarInterno">SI?</mat-checkbox>
+                                </div> 
                         </div>
 
                 </mat-card>
@@ -76,13 +84,13 @@
                                         <div class="col-sm-4">
                                                 <mat-form-field appearance="outline">
                                                         <mat-label>Pureza</mat-label>
-                                                        <input matInput formControlName='pureza'>
+                                                        <input matInput formControlName='pureza' autocomplete="off">
                                                 </mat-form-field>
                                         </div>
                                         <div class="col-sm-4">
                                                 <mat-form-field appearance="outline">
                                                         <mat-label>Humedad</mat-label>
-                                                        <input matInput formControlName='humedad'>
+                                                        <input matInput formControlName='humedad' autocomplete="off">
                                                 </mat-form-field>
                                         </div>
                                         <div class="col-sm-4">
@@ -91,17 +99,18 @@
                                                         <div class="col-sm-7">
                                                                 <mat-form-field appearance="outline">
                                                                         <mat-label>Cantidad Recibida</mat-label>
-                                                                        <input matInput formControlName='masaCantidadRecibida'>
+                                                                        <input matInput formControlName='masaCantidadRecibida' autocomplete="off">
                                                                 </mat-form-field>    
                                                         </div>
                                                         <div class="col-sm-5">
                                                                 <mat-form-field appearance="outline">
                                                                         <mat-label>Unidad</mat-label>
                                                                         <mat-select formControlName="unidadCantidadRecibida">
-                                                                                <mat-option *ngFor="let unidad of unidades" [value]="unidad.value">
+                                                                                <mat-option *ngFor="let unidad of unidades" [value]="unidad.viewValue">
                                                                                         {{unidad.viewValue}}
                                                                                 </mat-option>
                                                                         </mat-select>
+                                                                        {{this.nuevaDrogaForm.controls.unidadCantidadRecibida.value}}
                                                                 </mat-form-field>  
                                                         </div>
                                                 </div>
@@ -129,14 +138,14 @@
                                                 <mat-form-field appearance="outline">
                                                         <mat-label>Libre/Combinada</mat-label>
                                                         <mat-select formControlName="drogaLibre">
-                                                                <mat-option value="libre">Libre</mat-option>
-                                                                <mat-option value="combinada">Combinada</mat-option>
+                                                                <mat-option value= 'true'>Libre</mat-option>
+                                                                <mat-option value= 'false'>Combinada</mat-option>
                                                         </mat-select>
                                                 </mat-form-field>
                                         </div>
                                 </div>
 
-                                <div class='row' *ngIf= "this.nuevaDrogaForm.controls.drogaLibre.value == 'combinada'">
+                                <div class='row' *ngIf= "this.nuevaDrogaForm.controls.drogaLibre.value == 'false'">
                                         <div class="col-sm-4" >
                                                 <mat-form-field appearance="outline">
                                                         <mat-label>Masa DL</mat-label>
@@ -162,7 +171,7 @@
                                                 <mat-form-field appearance='outline'>
                                                         <mat-label>Sectores</mat-label>
                                                         <mat-select formControlName="sectores" multiple>
-                                                        <mat-option *ngFor="let sector of sectores" [value]="sector.value">{{sector.viewValue}}</mat-option>
+                                                        <mat-option *ngFor="let sector of sectores" [value]="sector.viewValue">{{sector.viewValue}}</mat-option>
                                                         </mat-select>
                                                 </mat-form-field> 
                                         </div>
@@ -171,7 +180,7 @@
                                                 <mat-form-field appearance='outline'>
                                                         <mat-label>Rubros</mat-label>
                                                         <mat-select formControlName="rubros" multiple>
-                                                        <mat-option *ngFor="let rubro of rubros" [value]="rubro.value">{{rubro.viewValue}}</mat-option>
+                                                        <mat-option *ngFor="let rubro of rubros" [value]="rubro.viewValue">{{rubro.viewValue}}</mat-option>
                                                         </mat-select>
                                                 </mat-form-field> 
                                         </div>
@@ -180,7 +189,7 @@
                                                 <mat-form-field appearance='outline'>
                                                         <mat-label>Ubicacion</mat-label>
                                                         <mat-select formControlName="ubicacion">
-                                                        <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.value">{{ubicacion.viewValue}}</mat-option>
+                                                        <mat-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.viewValue">{{ubicacion.viewValue}}</mat-option>
                                                         </mat-select>
                                                 </mat-form-field> 
                                         </div>
@@ -191,7 +200,7 @@
                                                         <mat-form-field appearance='outline'>
                                                                 <mat-label>Estado</mat-label>
                                                                 <mat-select formControlName="estado">
-                                                                <mat-option *ngFor="let estado of estados" [value]="estado.value">{{estado.viewValue}}</mat-option>
+                                                                <mat-option *ngFor="let estado of estados" [value]="estado.viewValue">{{estado.viewValue}}</mat-option>
                                                                 </mat-select>
                                                         </mat-form-field> 
                                                 </div>
@@ -200,7 +209,7 @@
                                                         <mat-form-field appearance='outline'>
                                                                 <mat-label>Rubros</mat-label>
                                                                 <mat-select formControlName="rubros" multiple>
-                                                                <mat-option *ngFor="let rubro of rubros" [value]="rubro.value">{{rubro.viewValue}}</mat-option>
+                                                                <mat-option *ngFor="let rubro of rubros" [value]="rubro.viewValue">{{rubro.viewValue}}</mat-option>
                                                                 </mat-select>
                                                         </mat-form-field> 
                                                 </div>
@@ -209,7 +218,7 @@
                                                         <mat-form-field appearance='outline'>
                                                                 <mat-label>Certificados</mat-label>
                                                                 <mat-select formControlName="certificados">
-                                                                <mat-option *ngFor="let certificado of certificados" [value]="certificado.value">{{certificado.viewValue}}</mat-option>
+                                                                <mat-option *ngFor="let certificado of certificados" [value]="certificado.viewValue">{{certificado.viewValue}}</mat-option>
                                                                 </mat-select>
                                                         </mat-form-field> 
                                                 </div>
@@ -219,7 +228,7 @@
                                                 <div class= 'col-sm-12'>
                                                         <mat-form-field appearance='outline'>
                                                                 <mat-label>Observaciones</mat-label>
-                                                                <textarea matInput placeholder="Informacion extra"></textarea>
+                                                                <textarea matInput placeholder="Informacion extra" formControlName="observaciones"></textarea>
                                                         </mat-form-field> 
                                                 </div>
                                         </div>
