@@ -33,7 +33,7 @@
     "mongoose": "^5.7.1",
     "mongoose-unique-validator": "^2.0.3",
     //"node-pre-gyp": "^0.14.0",
-    "nodemon": "^1.19.1",
+    //"nodemon": "^1.19.1",
     "popper.js": "^1.15.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
