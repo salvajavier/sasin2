@@ -20,6 +20,7 @@ export class DrogasService {
   formularioNuevaDroga = true;
   resultado: Subject< {message: string, result: object }> = new Subject();
   dataDroga;
+  dataDrogaSI;
   idSeleccionado;
   datosDrogaEditada: Subject<Droga> = new Subject();
 
@@ -39,7 +40,7 @@ export class DrogasService {
   }
 
   actualizarDroga(dataDroga: Droga): Observable <HttpResponses> {
-    this.http.post<HttpResponses>('http://localhost:3000/api/drogas', dataDroga._id).subscribe(res => {
+    this.http.put<HttpResponses>('http://localhost:3000/api/drogas/' + this.idSeleccionado, dataDroga).subscribe(res => {
       this.resultado.next(res);
       this.getDrogas();
     }, error => {
@@ -50,12 +51,23 @@ export class DrogasService {
 
   getDrogas(): Observable <HttpResponses> {
     this.http.get<Droga>('http://localhost:3000/api/drogas').subscribe(res => {
+      console.log(res)
       this.dataDroga = res;
     }, error => {
       console.log(error);
     });
     return;
   }
+
+  getDrogasSI(): Observable <HttpResponses> {
+    this.http.get<Droga>('http://localhost:3000/api/drogasSI').subscribe(res => {
+      this.dataDrogaSI = res;
+    }, error => {
+      console.log(error);
+    });
+    return;
+  }
+
 
   getDroga(idSeleccionado): Observable <HttpResponses> {
     this.http.get<{message: string, result: Droga}>('http://localhost:3000/api/drogas/' + idSeleccionado).subscribe(res => {

@@ -1,10 +1,30 @@
-<ag-grid-angular 
-    style="width: 100%; height: 600px;" 
-    class="ag-theme-balham"
-    [rowData]="ds.dataDroga" 
-    [rowSelection]='rowSelection'
-    [columnDefs]="columnDefs"
-    (selectionChanged)="onSelectionChanged($event)"
-    (gridReady)="onGridReady($event)"
-    >
-</ag-grid-angular>
+
+<mat-tab-group>
+    <mat-tab label="Drogas Madre">
+        <ag-grid-angular 
+        style="width: 100%; height: 600px;" 
+        class="ag-theme-balham"
+        [rowData]="ds.dataDroga" 
+        [rowSelection]='rowSelection'
+        [columnDefs]="columnDefs"
+        (selectionChanged)="onSelectionChanged($event)"
+        (gridReady)="onGridReady($event)"
+        (bodyScroll)='autoSizeAll()'
+        >
+    </ag-grid-angular>
+    </mat-tab>
+    <mat-tab label="Estandar Interno">
+        <ag-grid-angular 
+        style="width: 100%; height: 600px;" 
+        class="ag-theme-balham"
+        [rowData]="ds.dataDrogaSI" 
+        [rowSelection]='rowSelection'
+        [columnDefs]="columnDefs"
+        (selectionChanged)="onSelectionChanged($event)"
+        (gridReady)="onGridReady($event)"
+        (bodyScroll)='autoSizeAll()'
+        >
+    </ag-grid-angular>
+    </mat-tab>
+  </mat-tab-group>
+

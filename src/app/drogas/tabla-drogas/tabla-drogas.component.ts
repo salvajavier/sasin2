@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DrogasService } from 'src/app/_servicios/drogas.service';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
+import { AgGridAngular } from 'ag-grid-angular';
 
 @Component({
   selector: 'app-tabla-drogas',
@@ -17,7 +18,6 @@ export class TablaDrogasComponent implements OnInit {
   private rowSelection;
   private selectedId;
   refrescarTabla: Subscription;
-  
   constructor(private ds: DrogasService) { }
 
   ngOnInit() {
@@ -178,11 +178,24 @@ export class TablaDrogasComponent implements OnInit {
   ];
     this.rowSelection = 'single';
     this.rowData = this.ds.getDrogas();
+    this.ds.getDrogasSI();
   }
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.autoSizeAll();
   }
+
+
+
+  autoSizeAll() {
+    const allColumnIds = [];
+    this.gridColumnApi.getAllColumns().forEach((column) => {
+      allColumnIds.push(column.colId);
+    });
+    this.gridColumnApi.autoSizeColumns(allColumnIds);
+  }
+
 
   onSelectionChanged() {
     const selectedRows = this.gridApi.getSelectedRows();
